@@ -31,6 +31,8 @@ object KotlinDefaultArgumentsTarget {
         }
     }
 
+    class SimpleConstructor(name: String = "foo") // assertFullyCovered()
+
     class Constructor() {
         constructor(a: Boolean, b: String = if (a) "a" else "b") : this() // assertFullyCovered(0, 2)
     }
@@ -80,6 +82,10 @@ object KotlinDefaultArgumentsTarget {
     ) { // assertEmpty()
     } // assertFullyCovered()
 
+    class OverloadExample1 @JvmOverloads constructor(name: String = "foo") // assertFullyCovered()
+    class OverloadExample2 @JvmOverloads constructor(name: String = "foo") // assertFullyCovered()
+    class OverloadExample3 @JvmOverloads constructor(name: String = "foo") // assertFullyCovered()
+
     @JvmStatic
     fun main(args: Array<String>) {
         f(a = "a")
@@ -94,6 +100,8 @@ object KotlinDefaultArgumentsTarget {
         branch(true)
 
         Open().f()
+
+        SimpleConstructor("x")
 
         Constructor(false)
         Constructor(true)
@@ -111,6 +119,13 @@ object KotlinDefaultArgumentsTarget {
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0
         )
+
+        OverloadExample1()
+        OverloadExample1("boo")
+
+        OverloadExample2()
+
+        OverloadExample3("boo")
     }
 
 }
