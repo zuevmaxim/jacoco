@@ -74,6 +74,12 @@ object KotlinWhenExpressionTarget {
         else -> 6 // assertFullyCovered()
     } // assertFullyCovered()
 
+    private fun whenNullableString(p: String?): Int = when (p) { // assertFullyCovered(0, 3)
+        "a", "b" -> 1 // assertFullyCovered()
+        "c" -> 2 // assertFullyCovered()
+        else -> 3 // assertFullyCovered()
+    } // assertFullyCovered()
+
     private fun whenBoolean(p: Boolean) = when (p) { // assertFullyCovered()
         true -> 1 // assertFullyCovered()
         false -> 2 // assertFullyCovered()
@@ -115,6 +121,11 @@ object KotlinWhenExpressionTarget {
         whenStringBiggestHashCodeFirst("c")
         whenStringBiggestHashCodeFirst("\u0000a")
         whenStringBiggestHashCodeFirst("\u0000b")
+
+        whenNullableString("a")
+        whenNullableString("b")
+        whenNullableString("c")
+        whenNullableString("d")
 
         whenBoolean(true)
         whenBoolean(false)
