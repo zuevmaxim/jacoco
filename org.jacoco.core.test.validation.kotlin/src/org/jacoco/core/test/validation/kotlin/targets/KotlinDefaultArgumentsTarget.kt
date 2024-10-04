@@ -71,6 +71,15 @@ object KotlinDefaultArgumentsTarget {
         p33: String, // assertEmpty()
     ) // assertFullyCovered()
 
+    fun functionWithSoManyParams( // assertFullyCovered()
+        x00: Int, x01: Int, x02: Int, x03: Int, x04: Int, x05: Int, x06: Int, x07: Int, x08: Int, x09: Int, // assertEmpty()
+        x10: Int, x11: Int, x12: Int, x13: Int, x14: Int, x15: Int, x16: Int, x17: Int, x18: Int, x19: Int, // assertEmpty()
+        x20: Int, x21: Int, x22: Int, x23: Int, x24: Int, x25: Int, x26: Int, x27: Int, x28: Int, x29: Int, // assertEmpty()
+        x30: Int, x31: Int, // assertEmpty()
+        a: Long = 1 // assertFullyCovered()
+    ) { // assertEmpty()
+    } // assertFullyCovered()
+
     @JvmStatic
     fun main(args: Array<String>) {
         f(a = "a")
@@ -94,6 +103,13 @@ object KotlinDefaultArgumentsTarget {
             "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
             "21", "22", "23", "24", "25", "26", "27", "28", "29", "30",
             "31", p33 = ""
+        )
+
+        functionWithSoManyParams(
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0
         )
     }
 
