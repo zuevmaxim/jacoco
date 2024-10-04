@@ -12,6 +12,7 @@
  *******************************************************************************/
 package org.jacoco.core.test.validation.kotlin.targets
 
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import org.jacoco.core.test.validation.targets.Stubs.nop
 
@@ -34,6 +35,11 @@ object KotlinCoroutineTarget {
         nop() // assertFullyCovered()
     }
 
+    suspend inline fun suspendInlineFun(f: () -> Int): Int { // assertEmpty()
+        delay(100) // assertFullyCovered()
+        return f() + 5 // assertFullyCovered()
+    } // assertEmpty()
+
     private fun suspendingLambdaWithoutSuspensionPoints() {
         runBlocking { // assertFullyCovered()
             nop() // assertFullyCovered()
@@ -48,8 +54,9 @@ object KotlinCoroutineTarget {
             nop(x) // assertFullyCovered()
             suspendingFunction() // assertFullyCovered()
             nop(x) // assertFullyCovered()
-            suspendingFunctionWithTailCallOptimization()
-        } // assertFullyCovered()
+            suspendingFunctionWithTailCallOptimization()  // assertFullyCovered()
+            suspendInlineFun { 6 } // assertFullyCovered()
+        }
 
         suspendingLambdaWithoutSuspensionPoints()
     }
