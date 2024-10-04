@@ -79,6 +79,14 @@ object KotlinWhenExpressionTarget {
         false -> 2 // assertFullyCovered()
     } // assertFullyCovered()
 
+    private enum class SimpleEnum {
+        Single
+    }
+
+    private fun simpleF(v: SimpleEnum) = when (v) { // assertFullyCovered()
+        SimpleEnum.Single -> 42 // assertFullyCovered()
+    } // assertFullyCovered()
+
     @JvmStatic
     fun main(args: Array<String>) {
         whenSealed(Sealed.Sealed1)
@@ -110,6 +118,8 @@ object KotlinWhenExpressionTarget {
 
         whenBoolean(true)
         whenBoolean(false)
+
+        simpleF(SimpleEnum.Single)
     }
 
 }
